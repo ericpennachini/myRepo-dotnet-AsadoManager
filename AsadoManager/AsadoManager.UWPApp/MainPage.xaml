@@ -8,13 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="96,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147"/>
-        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="96,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147"/>
-        <TextBlock x:Name="textBlockName" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Height="32"/>
-        <TextBlock x:Name="textBlockQuantity" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" Text="Monto" VerticalAlignment="Top" Height="32"/>
-        <Button x:Name="buttonAddUserToList" Content="Agregar" HorizontalAlignment="Left" Height="69" Margin="273,38,0,0" VerticalAlignment="Top" Width="77" Click="buttonAddUserToList_Click"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="341" Margin="10,138,0,0" VerticalAlignment="Top" Width="340" Background="#FF424242"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Nombre..." PointerEntered="textBoxName_PointerEntered" />
+        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Monto..." PointerEntered="textBoxQuantity_PointerEntered"/>
+        <Button x:Name="buttonAddUserToList" Content="Agregar" HorizontalAlignment="Left" Height="69" Margin="273,98,0,0" VerticalAlignment="Top" Width="77" Click="buttonAddUserToList_Click">
+            <Button.Flyout>
+                <Flyout x:Name="alertAddUser">
+                    <TextBlock x:Name="msgFlyoutAddUser" Text="Campos vacíos!"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="276" Margin="10,203,0,0" VerticalAlignment="Top" Width="340" Background="#FF424242"/>
         <Button x:Name="buttonCalculate" Content="Calcular" HorizontalAlignment="Left" Height="44" Margin="96,509,0,0" VerticalAlignment="Top" Width="172"/>
+        <TextBlock x:Name="textBlockTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ASADO MANAGER"  VerticalAlignment="Top" Width="233" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlockDesc" HorizontalAlignment="Left" Margin="10,42,0,0" TextWrapping="Wrap" Text="Ingrese el nombre, el monto que aportó cada uno y tocá en 'Agregar'. Una vez que cargaste todos, tocá 'Calcular'." VerticalAlignment="Top" Width="340" FontSize="12"/>
 
     </Grid>
 </Page>
