@@ -22,8 +22,13 @@ namespace AsadoManager.UWPApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //private Calculator _calc;
+        private List<User> _users;
+
         public MainPage()
         {
+            //_calc = new Calculator();
+            _users = new List<User>();
             this.InitializeComponent();
             if (Application.Current.RequestedTheme.Equals(ApplicationTheme.Light))
             {
@@ -44,28 +49,27 @@ namespace AsadoManager.UWPApp
             }
             else
             {
-                int res = 0;
-                Int32.TryParse(textBoxQuantity.Text, out res);
+                decimal res = 0;
+                decimal.TryParse(textBoxQuantity.Text, out res);
                 if (res != 0)
                 {
-                    msgFlyoutAddUser.Text = "OK!";
-                    listView.Items.Add($"{textBoxName.Text}   ${textBoxQuantity.Text}");
+                    listView.Visibility = Visibility.Visible;
+                    msgFlyoutAddUser.Text = "OK";
+                    listView.Items.Add($"{textBoxName.Text}   ${res.ToString()}");
+                    _users.Add(new User
+                    {
+                        Name = textBoxName.Text,
+                        Quantity = res
+                    });
                     // Agregar elementos a una lista (ver si hace falta)
                     textBoxName.Text = "";
                     textBoxQuantity.Text = ""; 
                 }
                 else
                 {
-                    msgFlyoutAddUser.Text = "El monto debe ser un número!";
+                    msgFlyoutAddUser.Text = "El monto debe ser un número";
                     textBoxQuantity.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Red);
                     textBoxQuantity.Background = new SolidColorBrush(Windows.UI.Colors.DarkRed);
-                    //ContentDialog errorDialog = new ContentDialog
-                    //{
-                    //    Title = "Error",
-                    //    Content = "El monto debe ser un número!",
-                    //    PrimaryButtonText = "Reintentar"
-                    //};
-                    //errorDialog.ShowAsync();
                 }
             }
         }
@@ -88,5 +92,34 @@ namespace AsadoManager.UWPApp
             ResetElementsColors();
         }
 
+        private void appBarButtonClearList_Click(object sender, RoutedEventArgs e)
+        {
+            listView.Items.Clear();
+            _users.Clear();
+            textBoxName.Focus(FocusState.Pointer);
+        }
+
+        private void appButtonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog aboutDialog = new ContentDialog()
+            {
+                Title = "Acerca de esta aplicación",
+                Content = "AsadoManager. Proyecto personal ;-)",
+                PrimaryButtonText = "OK"
+            };
+            aboutDialog.ShowAsync();
+        }
+
+        private void appBarButtonCalculate_Click(object sender, RoutedEventArgs e)
+        {
+            //ContentDialog aboutDialog = new ContentDialog()
+            //{
+            //    Title = "Info",
+            //    Content = "Anda joya :O",
+            //    PrimaryButtonText = "OK"
+            //};
+            //aboutDialog.ShowAsync();
+            this.Frame.Navigate(typeof(ResultPage), _users);
+        }
     }
 }

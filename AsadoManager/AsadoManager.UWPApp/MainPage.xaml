@@ -6,10 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton x:Name="appBarButtonCalculate" Icon="Accept" Label="Calcular" Click="appBarButtonCalculate_Click"/>
+            <AppBarButton x:Name="appBarButtonClearList" Icon="Cancel" Label="Limpiar" Click="appBarButtonClearList_Click"/>
+            <AppBarToggleButton Label="Seleccionar varios" Icon="SelectAll"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="appButtonAbout" Icon="Contact" Label="Acerca de..." Click="appButtonAbout_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Nombre..." PointerEntered="textBoxName_PointerEntered" />
-        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Monto..." PointerEntered="textBoxQuantity_PointerEntered"/>
+        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Monto..." PointerEntered="textBoxQuantity_PointerEntered" InputScope="Number"/>
         <Button x:Name="buttonAddUserToList" Content="Agregar" HorizontalAlignment="Left" Height="69" Margin="273,98,0,0" VerticalAlignment="Top" Width="77" Click="buttonAddUserToList_Click">
             <Button.Flyout>
                 <Flyout x:Name="alertAddUser">
@@ -17,8 +30,7 @@
                 </Flyout>
             </Button.Flyout>
         </Button>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="276" Margin="10,203,0,0" VerticalAlignment="Top" Width="340" Background="#FF424242"/>
-        <Button x:Name="buttonCalculate" Content="Calcular" HorizontalAlignment="Left" Height="44" Margin="96,509,0,0" VerticalAlignment="Top" Width="172"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="277" Margin="10,203,0,0" VerticalAlignment="Top" Width="340" Background="#FF2B2B2B"/>
         <TextBlock x:Name="textBlockTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ASADO MANAGER"  VerticalAlignment="Top" Width="233" FontWeight="Bold"/>
         <TextBlock x:Name="textBlockDesc" HorizontalAlignment="Left" Margin="10,42,0,0" TextWrapping="Wrap" Text="Ingrese el nombre, el monto que aportó cada uno y tocá en 'Agregar'. Una vez que cargaste todos, tocá 'Calcular'." VerticalAlignment="Top" Width="340" FontSize="12"/>
 
