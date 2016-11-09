@@ -44,6 +44,8 @@ namespace AsadoManager.UWPApp
             foreach (var user in result)
             {
                 TextBlock t = new TextBlock();
+                t.FontSize = 18;
+                t.TextWrapping = TextWrapping.WrapWholeWords;
                 t.Text = user.Name + " tiene que " + (user.Quantity < 0 ? "recibir $" + (-user.Quantity) : "aportar $" + user.Quantity);
                 stackPanel.Children.Add(t);
             }

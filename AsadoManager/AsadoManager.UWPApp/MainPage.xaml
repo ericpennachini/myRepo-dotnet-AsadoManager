@@ -11,7 +11,13 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="appBarButtonCalculate" Icon="Accept" Label="Calcular" Click="appBarButtonCalculate_Click"/>
+            <AppBarButton x:Name="appBarButtonCalculate" Icon="Accept" Label="Calcular" Click="appBarButtonCalculate_Click">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="flyoutButtonCalculate">
+                        <TextBlock x:Name="msgFlyoutCalculate"/>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarButton x:Name="appBarButtonClearList" Icon="Cancel" Label="Limpiar" Click="appBarButtonClearList_Click"/>
             <AppBarToggleButton Label="Seleccionar varios" Icon="SelectAll"/>
             <CommandBar.SecondaryCommands>
@@ -21,8 +27,8 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Nombre..." PointerEntered="textBoxName_PointerEntered" />
-        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Monto..." PointerEntered="textBoxQuantity_PointerEntered" InputScope="Number"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Nombre..." PointerEntered="textBoxName_PointerEntered" />
+        <TextBox x:Name="textBoxQuantity" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="233" PlaceholderText="Monto..." PointerEntered="textBoxQuantity_PointerEntered" InputScope="Number"/>
         <Button x:Name="buttonAddUserToList" Content="Agregar" HorizontalAlignment="Left" Height="69" Margin="273,98,0,0" VerticalAlignment="Top" Width="77" Click="buttonAddUserToList_Click">
             <Button.Flyout>
                 <Flyout x:Name="alertAddUser">

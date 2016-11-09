@@ -16,7 +16,7 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Height="415" Margin="10,77,0,0" VerticalAlignment="Top" Width="340" BorderBrush="#FF616161" Background="#FF2B2B2B" />
+        <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Height="415" Margin="10,77,0,0" Padding="15,15,15,15" VerticalAlignment="Top" Width="340" BorderBrush="#FF616161" Background="#FF2B2B2B" />
         <TextBlock x:Name="textBlockTitleRes" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="RESULTADO"  VerticalAlignment="Top" Width="233" FontWeight="Bold"/>
 
     </Grid>

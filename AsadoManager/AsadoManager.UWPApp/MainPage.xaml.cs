@@ -22,17 +22,19 @@ namespace AsadoManager.UWPApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //private Calculator _calc;
         private List<User> _users;
 
         public MainPage()
         {
-            //_calc = new Calculator();
             _users = new List<User>();
             this.InitializeComponent();
             if (Application.Current.RequestedTheme.Equals(ApplicationTheme.Light))
             {
                 listView.Background = new SolidColorBrush(Windows.UI.Colors.LightGray);
+                //textBoxName.BorderBrush = new SolidColorBrush(Windows.UI.Colors.DarkRed);
+                //textBoxName.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                //textBoxQuantity.BorderBrush = new SolidColorBrush(Windows.UI.Colors.DarkRed);
+                //textBoxQuantity.Background = new SolidColorBrush(Windows.UI.Colors.Red);
             }
         }
 
@@ -40,18 +42,20 @@ namespace AsadoManager.UWPApp
         {
             if (textBoxName.Text == "" || textBoxQuantity.Text == "")
             {
-                msgFlyoutAddUser.Text = "Campos vacíos!";
+                msgFlyoutAddUser.Text = "Campos vacíos";
                 alertAddUser.ShowAt((FrameworkElement)sender);
                 textBoxName.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Red);
                 textBoxName.Background = new SolidColorBrush(Windows.UI.Colors.DarkRed);
+                textBoxName.PlaceholderText = "";
                 textBoxQuantity.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Red);
                 textBoxQuantity.Background = new SolidColorBrush(Windows.UI.Colors.DarkRed);
+                textBoxQuantity.PlaceholderText = "";
             }
             else
             {
                 decimal res = 0;
                 decimal.TryParse(textBoxQuantity.Text, out res);
-                if (res != 0)
+                if (res >= 0)
                 {
                     listView.Visibility = Visibility.Visible;
                     msgFlyoutAddUser.Text = "OK";
@@ -61,7 +65,6 @@ namespace AsadoManager.UWPApp
                         Name = textBoxName.Text,
                         Quantity = res
                     });
-                    // Agregar elementos a una lista (ver si hace falta)
                     textBoxName.Text = "";
                     textBoxQuantity.Text = ""; 
                 }
@@ -72,14 +75,17 @@ namespace AsadoManager.UWPApp
                     textBoxQuantity.Background = new SolidColorBrush(Windows.UI.Colors.DarkRed);
                 }
             }
+            textBoxName.Focus(FocusState.Keyboard);
         }
 
         private void ResetElementsColors()
         {
             textBoxName.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
             textBoxName.Background = new SolidColorBrush();
+            textBoxName.PlaceholderText = "Nombre...";
             textBoxQuantity.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
             textBoxQuantity.Background = new SolidColorBrush();
+            textBoxQuantity.PlaceholderText = "Monto...";
         }
 
         private void textBoxName_PointerEntered(object sender, PointerRoutedEventArgs e)
@@ -112,14 +118,23 @@ namespace AsadoManager.UWPApp
 
         private void appBarButtonCalculate_Click(object sender, RoutedEventArgs e)
         {
-            //ContentDialog aboutDialog = new ContentDialog()
-            //{
-            //    Title = "Info",
-            //    Content = "Anda joya :O",
-            //    PrimaryButtonText = "OK"
-            //};
-            //aboutDialog.ShowAsync();
-            this.Frame.Navigate(typeof(ResultPage), _users);
+            if (listView.Items.Count == 0 || _users.Count == 0)
+            {
+                //ContentDialog errorDialog = new ContentDialog()
+                //{
+                //    Title = "Error",
+                //    Content = "Lista vacía",
+                //    PrimaryButtonText = "Reintentar"
+                //};
+                //await errorDialog.ShowAsync();
+                //appBar
+                msgFlyoutCalculate.Text = "Lista vacía";
+                flyoutButtonCalculate.Placement = FlyoutPlacementMode.Top;
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(ResultPage), _users);
+            }
         }
     }
 }
