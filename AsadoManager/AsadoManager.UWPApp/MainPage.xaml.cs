@@ -129,7 +129,7 @@ namespace AsadoManager.UWPApp
                 //await errorDialog.ShowAsync();
                 //appBar
                 msgFlyoutCalculate.Text = "Lista vacía";
-                flyoutButtonCalculate.Placement = FlyoutPlacementMode.Top;
+                //flyoutButtonCalculate.Placement = FlyoutPlacementMode.Top;
             }
             else
             {

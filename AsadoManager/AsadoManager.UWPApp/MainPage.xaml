@@ -14,7 +14,7 @@
             <AppBarButton x:Name="appBarButtonCalculate" Icon="Accept" Label="Calcular" Click="appBarButtonCalculate_Click">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="flyoutButtonCalculate">
-                        <TextBlock x:Name="msgFlyoutCalculate"/>
+                        <TextBlock x:Name="msgFlyoutCalculate" Text=""/>
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
